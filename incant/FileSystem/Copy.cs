@@ -3,26 +3,26 @@ using incant;
 
 namespace incant.FileSystem
 {
-	public class CopyParams 
-	{
-		public File source { get; private set; }
-        public File destination { get; private set; }
-		
-		public CopyParams(File src, File dst) {
-			this.source = src;
-			this.destination = dst;
-		}
-	}
 	
-	public class Copy: ICommand<CopyParams, bool>
+	public class Copy: Command<bool>
 	{
-		public Copy ()
+        [Parameter]
+        public File Source { get; set; }
+
+        [Parameter]
+        public File Destination { get; set; }
+
+        [Parameter(false)]
+        public bool Overwrite { get; set; }
+
+        public Copy ()
 		{
+            Overwrite = false;
 		}
-		
-		public bool execute(CopyParams args) {
+
+		public override bool execute() {
 			try {
-				System.IO.File.Copy(args.source.path, args.destination.path);
+				    System.IO.File.Copy(Source.path, Destination.path, Overwrite);
 			} catch (Exception) {
 				return false;
 			}
