@@ -5,8 +5,8 @@ namespace incant.FileSystem
 {
 	public class CopyParams 
 	{
-		private File source { public get; set; }
-		private File destination { public get; set; }
+		public File source { get; private set; }
+        public File destination { get; private set; }
 		
 		public CopyParams(File src, File dst) {
 			this.source = src;
@@ -23,7 +23,7 @@ namespace incant.FileSystem
 		public bool execute(CopyParams args) {
 			try {
 				System.IO.File.Copy(args.source.path, args.destination.path);
-			} catch (exception) {
+			} catch (Exception) {
 				return false;
 			}
 			
