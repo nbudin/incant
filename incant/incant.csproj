@@ -41,6 +41,12 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="FileSystem\Copy.cs" />
+    <Compile Include="FileSystem\File.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="FileSystem\" />
+  </ItemGroup>
 </Project>
