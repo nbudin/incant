@@ -1,6 +1,9 @@
 using System;
 using System.Linq;
 using incant.FileSystem;
+using incant.HTTP;
+using System.Collections.Generic;
+using System.IO;
 
 namespace incant
 {
@@ -10,16 +13,10 @@ namespace incant
 		{
 			Console.WriteLine ("Hello World!");
 
-            Copy c = new Copy();
-
-            Console.WriteLine(c.Satisfied);
-
-            c.Source = new File( "foo" );
-            c.Destination = new File( "bar" );
-            c.Overwrite = true;
-
-            Console.WriteLine(c.Satisfied);
-            
+            Resource google = new Resource(new Uri("http://google.com"));
+			System.Net.WebResponse resp = google.Request("GET", "/", new Dictionary<string, string>(), new Dictionary<string, string>());
+			Console.Write(new StreamReader(resp.GetResponseStream()).ReadToEnd());
+			
             Console.ReadLine();
 		}
 	}
